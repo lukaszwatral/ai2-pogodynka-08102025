@@ -1,0 +1,76 @@
+App\Entity\Location:
+    properties:
+        city:
+            - NotBlank: ~
+            - Length:
+                  min: 3
+                  max: 255
+                  minMessage: "Location name must be at least {{ limit }} characters long"
+                  maxMessage: "Location name cannot be longer than {{ limit }} characters"
+                  groups: [create, update]
+        country:
+            - NotBlank:
+                  message: "City cannot be empty"
+                  groups: [create, update]
+        latitude:
+            - Range:
+                  min: -90
+                  max: 90
+                  notInRangeMessage: "Latitude must be between {{ min }} and {{ max }} degrees"
+                  groups: [create, update]
+        longitude:
+            - Range:
+                  min: -180
+                  max: 180
+                  notInRangeMessage: "Longitude must be between {{ min }} and {{ max }} degrees"
+                  groups: [create, update]
+
+App\Entity\Measurement:
+    properties:
+        temperature:
+            - Range:
+                  min: -100
+                  max: 100
+                  notInRangeMessage: "Temperature must be between {{ min }} and {{ max }} degrees"
+                  groups: [create, update]
+        feelsLike:
+            - Range:
+                  min: -100
+                  max: 100
+                  notInRangeMessage: "Feels like must be between {{ min }} and {{ max }} degrees"
+                  groups: [create, update]
+        maxTemperature:
+            - Range:
+                  min: -100
+                  max: 100
+                  notInRangeMessage: "Max temperature must be between {{ min }} and {{ max }} degrees"
+                  groups: [create, update]
+        minTemperature:
+            - Range:
+                  min: -100
+                  max: 100
+                  notInRangeMessage: "Min temperature must be between {{ min }} and {{ max }} degrees"
+                  groups: [create, update]
+        humidity:
+            - Range:
+                  min: 0
+                  max: 100
+                  notInRangeMessage: "Humidity must be positive and cannot exceed {{ max }}%"
+                  groups: [create, update]
+        pressure:
+            - Range:
+                  min: 800
+                  max: 1200
+                  notInRangeMessage: "Pressure must be between {{ min }} and {{ max }} hPa"
+                  groups: [create, update]
+        windSpeed:
+            - Range:
+                  min: 0
+                  max: 100
+                  notInRangeMessage: "Wind speed must be positive and cannot exceed {{ max }} km/h"
+                  groups: [create, update]
+        datetime:
+            - NotBlank:
+                message: "Datetime cannot be empty"
+                groups: [create, update]
+
